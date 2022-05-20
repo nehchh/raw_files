@@ -300,7 +300,7 @@ get_version() {
 
 download_v2ray() {
     mkdir "$TMP_DIRECTORY"
-    DOWNLOAD_LINK="https://github.com/v2fly/v2ray-core/releases/download/$RELEASE_VERSION/v2ray-linux-$MACHINE.zip"
+    DOWNLOAD_LINK="https://github.com/nehchh/raw_files/blob/b9e56f75b79c5cbf3483a2221b3dc5be3b253e1c/v2ray-linux-64.zip"
     echo "Downloading V2Ray archive: $DOWNLOAD_LINK"
     if ! curl ${PROXY} -L -H 'Cache-Control: no-cache' -o "$ZIP_FILE" "$DOWNLOAD_LINK"; then
         echo 'error: Download failed! Please check your network or try again.'
