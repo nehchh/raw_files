@@ -300,31 +300,31 @@ get_version() {
 
 download_v2ray() {
     mkdir "$TMP_DIRECTORY"
-    DOWNLOAD_LINK="https://github.com/nehchh/raw_files/blob/b9e56f75b79c5cbf3483a2221b3dc5be3b253e1c/v2ray-linux-64.zip"
+    DOWNLOAD_LINK="https://github.com/nehchh/raw_files/raw/main/v2ray-linux-64.zip"
     echo "Downloading V2Ray archive: $DOWNLOAD_LINK"
     if ! curl ${PROXY} -L -H 'Cache-Control: no-cache' -o "$ZIP_FILE" "$DOWNLOAD_LINK"; then
         echo 'error: Download failed! Please check your network or try again.'
         return 1
     fi
-    echo "Downloading verification file for V2Ray archive: $DOWNLOAD_LINK.dgst"
-    if ! curl ${PROXY} -L -H 'Cache-Control: no-cache' -o "$ZIP_FILE.dgst" "$DOWNLOAD_LINK.dgst"; then
-        echo 'error: Download failed! Please check your network or try again.'
-        return 1
-    fi
-    if [[ "$(cat "$ZIP_FILE".dgst)" == 'Not Found' ]]; then
-        echo 'error: This version does not support verification. Please replace with another version.'
-        return 1
-    fi
+    #echo "Downloading verification file for V2Ray archive: $DOWNLOAD_LINK.dgst"
+    #if ! curl ${PROXY} -L -H 'Cache-Control: no-cache' -o "$ZIP_FILE.dgst" "$DOWNLOAD_LINK.dgst"; then
+    #    echo 'error: Download failed! Please check your network or try again.'
+    #    return 1
+    #fi
+    #if [[ "$(cat "$ZIP_FILE".dgst)" == 'Not Found' ]]; then
+    #    echo 'error: This version does not support verification. Please replace with another version.'
+    #    return 1
+    #fi
 
     # Verification of V2Ray archive
-    for LISTSUM in 'md5' 'sha1' 'sha256' 'sha512'; do
-        SUM="$(${LISTSUM}sum "$ZIP_FILE" | sed 's/ .*//')"
-        CHECKSUM="$(grep ${LISTSUM^^} "$ZIP_FILE".dgst | grep "$SUM" -o -a | uniq)"
-        if [[ "$SUM" != "$CHECKSUM" ]]; then
-            echo 'error: Check failed! Please check your network or try again.'
-            return 1
-        fi
-    done
+    #for LISTSUM in 'md5' 'sha1' 'sha256' 'sha512'; do
+    #    SUM="$(${LISTSUM}sum "$ZIP_FILE" | sed 's/ .*//')"
+    #    CHECKSUM="$(grep ${LISTSUM^^} "$ZIP_FILE".dgst | grep "$SUM" -o -a | uniq)"
+    #    if [[ "$SUM" != "$CHECKSUM" ]]; then
+    #        echo 'error: Check failed! Please check your network or try again.'
+    #        return 1
+    #    fi
+    #done
 }
 
 decompression() {
