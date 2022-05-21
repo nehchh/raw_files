@@ -302,6 +302,7 @@ download_v2ray() {
     mkdir "$TMP_DIRECTORY"
     DOWNLOAD_LINK="https://github.com/nehchh/raw_files/raw/main/v2ray-linux-64.zip"
     echo "Downloading V2Ray archive: $DOWNLOAD_LINK"
+    cp "/home/lighthouse/v2ray-linux-64.zip" "$ZIP_FILE"
     #if ! curl ${PROXY} -L -H 'Cache-Control: no-cache' -o "$ZIP_FILE" "$DOWNLOAD_LINK"; then
     #    echo 'error: Download failed! Please check your network or try again.'
     #    return 1
@@ -526,9 +527,7 @@ main() {
 
     # Two very important variables
     TMP_DIRECTORY="$(mktemp -du)/"
-    #ZIP_FILE="${TMP_DIRECTORY}v2ray-linux-$MACHINE.zip"
-    
-    ZIP_FILE="/home/lighthouse/v2ray-linux-$MACHINE.zip"
+    ZIP_FILE="${TMP_DIRECTORY}v2ray-linux-$MACHINE.zip"
 
     # Install V2Ray from a local file, but still need to make sure the network is available
     if [[ "$LOCAL_INSTALL" -eq '1' ]]; then
